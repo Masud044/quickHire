@@ -7,6 +7,8 @@ import Spinner from '../components/common/Spinner'
 import { jobsApi } from '../utils/api'
 import { CATEGORIES } from '../utils/constants'
 
+
+
 const PARTNERS = ['salesforce', 'intel', 'tesla', 'amd', 'tableau']
 const STATS = [
   { icon: HiBriefcase, label: 'Live Jobs', value: '5,000+' },
@@ -56,10 +58,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-up">
-              <span className="inline-flex items-center gap-2 bg-primary-50 text-brand-blue text-sm font-semibold px-4 py-2 rounded-full mb-6">
+              {/* <span className="inline-flex items-center gap-2 bg-primary-50 text-brand-blue text-sm font-semibold px-4 py-2 rounded-full mb-6">
                 <span className="w-2 h-2 bg-brand-blue rounded-full animate-pulse" />
                 #1 Job Board Platform
-              </span>
+              </span> */}
               <h1 className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-brand-dark leading-tight mb-6">
                 Discover more than{' '}
                 <span className="text-brand-blue relative">
@@ -88,30 +90,19 @@ export default function HomePage() {
             </div>
 
             {/* Hero illustration */}
-            <div className="hidden lg:flex justify-center">
-              <div className="relative w-80 h-80">
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-blue to-purple-600 rounded-3xl opacity-10" />
-                <div className="absolute inset-4 bg-white rounded-2xl shadow-xl flex items-center justify-center">
-                  <div className="text-center p-6">
-                    <div className="text-6xl mb-4">⚡</div>
-                    <div className="font-display font-bold text-3xl text-brand-dark">Quick<span className="text-brand-blue">Hire</span></div>
-                    <p className="text-gray-400 text-sm mt-2">Find jobs faster</p>
-                    <div className="mt-6 space-y-2">
-                      {STATS.map(({ icon: Icon, label, value }) => (
-                        <div key={label} className="flex items-center justify-between text-sm">
-                          <span className="text-gray-400 flex items-center gap-2"><Icon className="text-brand-blue" />{label}</span>
-                          <span className="font-bold text-brand-dark">{value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+           <div className="flex justify-center px-4 mt-8 lg:mt-0">
+  <img
+    src="https://i.ibb.co/RTLvBj1R/people.png"
+    alt="people"
+    className="h-52 sm:h-64 md:h-72 lg:h-80 w-auto object-contain"
+  />
+</div>
           </div>
-
+           </div>
+          
+</section>
           {/* Partners */}
-          <div className="mt-14">
+          <div className="mt-14 bg-white">
             <p className="text-xs text-gray-400 font-medium uppercase tracking-widest mb-6 text-center">Trusted by top companies</p>
             <div className="flex flex-wrap items-center justify-center gap-8 opacity-50">
               {['Salesforce', 'Intel', 'TESLA', 'AMD', 'Tableau'].map(p => (
@@ -119,8 +110,8 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
+       
+      
 
       {/* Categories */}
       <section className="py-16 bg-white">
@@ -153,7 +144,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Banner */}
-      <section className="bg-brand-blue py-16">
+      {/* <section className="bg-brand-blue py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="text-center lg:text-left">
@@ -165,7 +156,48 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
+    <section
+  className="relative overflow-hidden bg-primary max-w-7xl mx-auto flex items-center rounded-b-sm"
+ style={{ clipPath: "polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%)", minHeight: "180px" }}
+      >
+
+  <div className="max-w-7xl mx-auto px-6 lg:px-16 relative z-10 flex items-center justify-evenly py-8">
+    {/* Left content */}
+    <div className="max-w-md z-10">
+      <h1 className="text-4xl md:text-5xl text-white font-bold leading-tight mb-4">
+        Start posting<br />jobs today
+      </h1>
+      <p className="text-white text-lg mb-8">
+        Start posting jobs for only $10.
+      </p>
+      <button className="bg-background text-white font-semibold px-8 py-3 rounded-full border-2 border-foreground hover:bg-foreground hover:text-background transition-colors">
+        Sign Up For Free
+      </button>
+    </div>
+
+    {/* Right dashboard image */}
+    <div className="hidden md:block relative w-[30%]">
+      <img
+        src="https://i.ibb.co/qYQz4hTj/download.jpg"
+        alt="Job posting dashboard analytics"
+        className="w-full h-50 rounded-xl shadow-2xl"
+      />
+    </div>
+  </div>
+
+  {/* Avatar at bottom-left */}
+  <div className="absolute bottom-0 left-[50%] translate-y-1/4 z-20">
+    <div className="w-24 h-24 lg:w-28 lg:h-28 rounded-full border-4 border-background overflow-hidden shadow-lg">
+      <img
+        src="https://i.ibb.co/60cT4fMy/download-1.jpg"
+        alt="Professional"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  </div>
+</section>
+
 
       {/* Featured Jobs */}
       <section className="py-16 bg-gray-50">

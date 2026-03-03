@@ -5,6 +5,7 @@ import Spinner from '../components/common/Spinner'
 import { jobsApi, applicationsApi } from '../utils/api'
 import { formatDate, getCategoryStyle, TYPE_COLORS } from '../utils/constants'
 import toast from 'react-hot-toast'
+ import Swal from "sweetalert2";
 
 export default function AdminPage() {
   const [jobs, setJobs] = useState([])
@@ -37,19 +38,43 @@ export default function AdminPage() {
 
   useEffect(() => { fetchData() }, [])
 
-  const handleDelete = async (id) => {
-    if (!confirm('Are you sure you want to delete this job?')) return
-    setDeleting(id)
+ 
+
+const handleDelete = async (id) => {
+  const result = await Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  });
+
+  if (result.isConfirmed) {
     try {
-      await jobsApi.delete(id)
-      setJobs(jobs.filter(j => j._id !== id))
-      toast.success('Job deleted successfully')
-    } catch (e) {
-      toast.error('Failed to delete job')
+      setDeleting(id);
+
+      await jobsApi.delete(id);
+      setJobs(prev => prev.filter(j => j._id !== id));
+
+      await Swal.fire({
+        title: "Deleted!",
+        text: "Job deleted successfully.",
+        icon: "success"
+      });
+
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "Failed to delete job.",
+        icon: "error"
+      });
     } finally {
-      setDeleting(null)
+      setDeleting(null);
     }
   }
+};
 
   const statCards = [
     { label: 'Total Jobs', value: stats?.total || 0, icon: HiBriefcase, color: 'bg-blue-50 text-blue-600' },
